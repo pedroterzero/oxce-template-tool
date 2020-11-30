@@ -1,0 +1,9 @@
+armors:
+  - type: CIV_ARMOR_M1
+    template: createUnit
+    vars:
+      randomRange: {min: 80, max: 100}
+  - type: CIV_ARMOR_F1
+    template: createUnit
+    vars:
+      randomRange: {min: 80, max: 100}

@@ -1,0 +1,134 @@
+var int temp;
+var int newValue;
+
+# Armor
+battle_game.randomRange temp {{randomRange.min}} {{randomRange.max}};   # a roll between {{randomRange.min}}% and {{randomRange.max}}% (armor cannot be increased over the maximum)
+
+unit.getArmor newValue SIDE_FRONT;
+mul newValue temp;
+div newValue 100;
+unit.setArmor SIDE_FRONT newValue;
+
+unit.getArmor newValue SIDE_LEFT;
+mul newValue temp;
+div newValue 100;
+unit.setArmor SIDE_LEFT newValue;
+
+unit.getArmor newValue SIDE_RIGHT;
+mul newValue temp;
+div newValue 100;
+unit.setArmor SIDE_RIGHT newValue;
+
+unit.getArmor newValue SIDE_REAR;
+mul newValue temp;
+div newValue 100;
+unit.setArmor SIDE_REAR newValue;
+
+unit.getArmor newValue SIDE_UNDER;
+mul newValue temp;
+div newValue 100;
+unit.setArmor SIDE_UNDER newValue;
+
+# Time units (stat + resource)
+battle_game.randomRange temp 80 120;
+unit.Stats.getTimeUnits newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setTimeUnits newValue;
+unit.setTimeUnits newValue;
+
+# Stamina + Energy
+battle_game.randomRange temp 80 120;
+unit.Stats.getStamina newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setStamina newValue;
+unit.setEnergy newValue;
+
+# Health (stat + resource)
+battle_game.randomRange temp 80 120;    # a roll between 80% and 120%
+unit.Stats.getHealth newValue;          # base health
+mul newValue temp;                      # multiply by the rolled number
+div newValue 100;                       # divide by 100
+unit.Stats.setHealth newValue;          # set the stat to the new value
+unit.setHealth newValue;                # set the actual resource to the new value too
+
+# Mana Pool + Mana
+battle_game.randomRange temp 80 120;
+unit.Stats.getManaPool newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setManaPool newValue;
+unit.setMana newValue;
+
+# Bravery
+battle_game.randomRange temp 0 5;       # a roll between 0 and 5 (representing -20 -10 +0 +10 +20 bravery)
+unit.Stats.getBravery newValue;         # base bravery
+
+if eq temp 0;                           # if roll = 0
+  sub newValue 20;                      # substract 20
+  unit.Stats.setBravery newValue;       # set the bravery to the new value
+end;
+if eq temp 1;                           # if roll = 1
+  sub newValue 10;                      # substract 10
+  unit.Stats.setBravery newValue;       # set the bravery to the new value
+end;
+if eq temp 4;                           # if roll = 3
+  add newValue 10;                      # add 10
+  unit.Stats.setBravery newValue;       # set the bravery to the new value
+end;
+if eq temp 5;                           # if roll = 5
+  add newValue 20;                      # add 20
+  unit.Stats.setBravery newValue;       # set the bravery to the new value
+end;
+
+# Strength
+battle_game.randomRange temp 80 120;
+unit.Stats.getStrength newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setStrength newValue;
+
+# Reactions
+battle_game.randomRange temp 80 120;
+unit.Stats.getReactions newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setReactions newValue;
+
+# Firing accuracy
+battle_game.randomRange temp 80 120;
+unit.Stats.getFiring newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setFiring newValue;
+
+# Throwing accuracy
+battle_game.randomRange temp 80 120;
+unit.Stats.getThrowing newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setThrowing newValue;
+
+# Melee accuracy
+battle_game.randomRange temp 80 120;
+unit.Stats.getMelee newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setMelee newValue;
+
+# Psi strength
+battle_game.randomRange temp 80 120;
+unit.Stats.getPsiStrength newValue;
+mul newValue temp;
+div newValue 100;
+unit.Stats.setPsiStrength newValue;
+
+# Psi skill
+battle_game.randomRange temp 90 110;
+unit.Stats.getPsiSkill newValue;
+if gt newValue 0;                       
+  mul newValue temp;
+  div newValue 100;
+  unit.Stats.setPsiSkill newValue;
+end;
